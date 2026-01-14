@@ -1,0 +1,239 @@
+/**
+ * @name Divine Dark Compact
+ * @description İlahi seviyede modern, cam efektli ve ultra kompakt tema.
+ * @author Gemini & Refact0r Base
+ * @version 2.0
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* --- Ana Ayarlar --- */
+    --font-primary: 'Figtree', sans-serif;
+    --font-display: 'Figtree', sans-serif;
+    
+    /* Renk Paleti (İlahi Karanlık) */
+    --main-color: #090b10; /* En arka zemin */
+    --glass-bg: rgba(10, 12, 18, 0.65); /* Panellerin cam rengi */
+    --glass-border: rgba(255, 255, 255, 0.08); /* İnce kenarlıklar */
+    --accent-color: #5865f2; /* Ana vurgu rengi (Discord Mavisi) */
+    --accent-glow: rgba(88, 101, 242, 0.4); /* Neon parlama */
+    
+    /* Boyutlandırma (Kompakt) */
+    --gap: 8px; /* Paneller arası boşluk */
+    --radius-lg: 16px; /* Büyük köşeler */
+    --radius-sm: 8px; /* Küçük köşeler */
+    --sidebar-width: 230px; /* Daha dar yan panel */
+    --members-width: 230px; /* Daha dar üye listesi */
+}
+
+/* --- Temel Yapı ve Arka Plan --- */
+body {
+    background-color: var(--main-color);
+    font-family: var(--font-primary) !important;
+}
+
+#app-mount ._960e4207cea8323e-bg {
+    background: radial-gradient(circle at top right, #1a1e29 0%, transparent 40%),
+                radial-gradient(circle at bottom left, #0f1219 0%, transparent 40%);
+    background-color: var(--main-color);
+}
+
+/* --- Cam Paneller (Glassmorphism) --- */
+/* Sohbet, Kenar Çubuğu, Üye Listesi Arka Planlarını Temizle ve Cam Yap */
+.f75fb00fb7356cbe-chat, 
+._5e434347c823b592-sidebar, 
+.c8ffbb79449f399c-container, 
+._133bf5eea8e33a34-container,
+._0920e02cc8fc7b7b-homeWrapper,
+.f07d62e29a48ceee-applicationStore {
+    background: transparent !important;
+}
+
+/* Ana Panelleri Ayır ve Yüzdür */
+._5e434347c823b592-sidebar {
+    width: var(--sidebar-width) !important;
+    border-right: 1px solid var(--glass-border);
+    margin: var(--gap);
+    border-radius: var(--radius-lg);
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(10px);
+}
+
+.f75fb00fb7356cbe-chatContent {
+    margin: var(--gap) var(--gap) var(--gap) 0;
+    border-radius: var(--radius-lg);
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.c8ffbb79449f399c-container {
+    width: var(--members-width) !important;
+    margin: var(--gap) var(--gap) var(--gap) 0;
+    border-radius: var(--radius-lg);
+    background: rgba(0,0,0,0.2) !important; /* Üye listesi biraz daha koyu */
+    border: 1px solid var(--glass-border);
+}
+
+/* --- Sunucu Listesi (Sol En Kenar) --- */
+._5e434347c823b592-guilds {
+    margin: var(--gap) 0 var(--gap) var(--gap);
+    border-radius: var(--radius-lg);
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+}
+
+/* Home butonu ikonunu değiştir (Daha modern) */
+._6e9f8dce4cc18de3-childWrapper { 
+    background-color: transparent !important; 
+}
+
+/* --- Kompakt Kanal Listesi --- */
+._2ea32c412048f708-link {
+    padding: 2px 8px !important; /* Daha az padding */
+    margin: 1px 0 !important;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+/* Kanal Hover Efekti */
+._2ea32c412048f708-wrapper:hover ._2ea32c412048f708-link {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Seçili Kanal */
+._2ea32c412048f708-modeSelected ._2ea32c412048f708-link {
+    background: linear-gradient(90deg, rgba(88,101,242,0.2), transparent);
+    border-left: 2px solid var(--accent-color);
+}
+._2ea32c412048f708-modeSelected ._2ea32c412048f708-name {
+    color: #fff !important;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Kanal Kategori Başlıkları */
+._629e4c86564a4ee7-containerDefault {
+    padding-top: 10px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+/* --- İlahi Sohbet (Chat Area) --- */
+/* Mesajlar */
+._5126c0cd07f243a0-groupStart {
+    margin-top: 8px !important; /* Mesajlar arası boşluğu azalt */
+}
+
+/* Yüzen Sohbet Barı (Floating Chat Input) */
+.f75fb00fb7356cbe-form {
+    padding: 0 20px 20px 20px !important;
+    margin-top: 0 !important;
+}
+
+.f75fb00fb7356cbe-channelTextArea {
+    background: rgba(0,0,0,0.4) !important;
+    border: 1px solid var(--glass-border);
+    border-radius: 24px !important; /* Tam yuvarlak kapsül */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.f75fb00fb7356cbe-channelTextArea:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Sohbet Başlığı (Header) */
+.f75fb00fb7356cbe-subtitleContainer {
+    background: transparent !important;
+    border-bottom: 1px solid var(--glass-border);
+    height: 48px !important;
+}
+.f75fb00fb7356cbe-title {
+    background: transparent !important;
+}
+
+/* Gereksiz butonları gizle (Yardım, Konu başlıkları vb.) */
+.c38106a3f0c3ca76-toolbar a[href*="support"], 
+.c38106a3f0c3ca76-toolbar ._9293f6b2fc12398a-icon[d*="M12 2C6.48 2 2 6.48"] {
+    display: none;
+}
+
+/* --- Kullanıcı Paneli (Sol Alt) --- */
+._5e434347c823b592-panels {
+    background: rgba(0,0,0,0.3) !important;
+    border-top: 1px solid var(--glass-border);
+    margin: 0 8px 8px 8px;
+    border-radius: var(--radius-lg);
+    width: auto !important;
+}
+
+/* Kullanıcı Profili Konteyneri */
+._37e49614b9f110a9-container {
+    height: 45px !important;
+    padding: 0 4px !important;
+}
+
+/* --- Kompakt Üye Listesi --- */
+.c8ffbb79449f399c-member {
+    padding: 4px 8px !important;
+    max-width: 100%;
+}
+.c8ffbb79449f399c-layout {
+    border-radius: var(--radius-sm);
+}
+.c8ffbb79449f399c-member:hover .c8ffbb79449f399c-layout {
+    background: rgba(255,255,255,0.05);
+}
+
+/* --- Pencere Kontrolleri (Mac Style - Modern) --- */
+.c38106a3f0c3ca76-winButton {
+    top: 10px;
+    background: transparent !important;
+}
+.c38106a3f0c3ca76-winButton > svg { display: none; }
+.c38106a3f0c3ca76-winButton::after {
+    content: "";
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+.c38106a3f0c3ca76-winButtonClose::after { background: #ff5f57; }
+.c38106a3f0c3ca76-winButtonMinMax:nth-child(2)::after { background: #febc2e; }
+.c38106a3f0c3ca76-winButtonMinMax:nth-child(1)::after { background: #28c840; }
+
+/* --- Ekstra Güzelleştirmeler --- */
+/* Scrollbar'ı Modernleştir */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 10px !important;
+}
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+/* Yeni mesaj ayracı */
+._908e20001ad67812-divider {
+    border-color: var(--accent-color);
+}
+._908e20001ad67812-content {
+    background: var(--accent-color) !important;
+    color: white !important;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 10px;
+}
+
+/* Embed ve Kod Blokları */
+._623de82e76ad7f82-embedFull, .hljs {
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid var(--glass-border);
+    border-left: 4px solid var(--accent-color);
+}
