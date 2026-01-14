@@ -1,239 +1,1046 @@
-/**
- * @name Divine Dark Compact
- * @description İlahi seviyede modern, cam efektli ve ultra kompakt tema.
- * @author Gemini & Refact0r Base
- * @version 2.0
- */
+/* DIVINE MIDNIGHT REMASTER 
+   Aşırı Kaliteli, Modern, Kompakt ve Full Sürüm.
+*/
 
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
+/* main.css */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    /* --- Ana Ayarlar --- */
-    --font-primary: 'Figtree', sans-serif;
-    --font-display: 'Figtree', sans-serif;
-    
-    /* Renk Paleti (İlahi Karanlık) */
-    --main-color: #090b10; /* En arka zemin */
-    --glass-bg: rgba(10, 12, 18, 0.65); /* Panellerin cam rengi */
-    --glass-border: rgba(255, 255, 255, 0.08); /* İnce kenarlıklar */
-    --accent-color: #5865f2; /* Ana vurgu rengi (Discord Mavisi) */
-    --accent-glow: rgba(88, 101, 242, 0.4); /* Neon parlama */
-    
-    /* Boyutlandırma (Kompakt) */
-    --gap: 8px; /* Paneller arası boşluk */
-    --radius-lg: 16px; /* Büyük köşeler */
-    --radius-sm: 8px; /* Küçük köşeler */
-    --sidebar-width: 230px; /* Daha dar yan panel */
-    --members-width: 230px; /* Daha dar üye listesi */
+    container-name: root;
+    /* Compact Ayarı: 12px yerine 8px */
+    --custom-guild-list-padding: 8px; 
+    /* Divine Blur: Arka planı bulanıklaştır */
+    --panel-backdrop-filter: blur(24px) saturate(120%); 
+
+    --border-hover: var(--accent-2); /* Hover'da accent rengi parlasın */
 }
 
-/* --- Temel Yapı ve Arka Plan --- */
 body {
-    background-color: var(--main-color);
-    font-family: var(--font-primary) !important;
+    container-name: body;
+
+    /* font */
+    --font: 'Figtree';
+    --code-font: 'JetBrains Mono', 'Consolas', monospace;
+
+    /* sizes - COMPACT MOD */
+    --gap: 8px; /* Paneller arası boşluğu azalttım */
+    --divider-thickness: 2px; /* Daha zarif ayırıcılar */
+    --border-thickness: 1px; 
+    --radius-lg: 18px; /* Daha modern yuvarlaklık */
+    --radius-md: 12px;
+    --radius-sm: 6px;
+    
+    --custom-guild-list-width: calc(var(--guildbar-avatar-size) + var(--custom-guild-list-padding) * 2 + var(--border-thickness) * 2);
+
+    --border-hover-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Daha akıcı animasyon */
 }
 
-#app-mount ._960e4207cea8323e-bg {
-    background: radial-gradient(circle at top right, #1a1e29 0%, transparent 40%),
-                radial-gradient(circle at bottom left, #0f1219 0%, transparent 40%);
-    background-color: var(--main-color);
+/* panel separation */
+._8946359d8adb1488-container > ._8946359d8adb1488-toolbar,
+._8946359d8adb1488-container > ._8946359d8adb1488-contentContainer,
+._5e434347c823b592-guilds, 
+._5e434347c823b592-sidebarList,
+._5e434347c823b592-panels,
+.f75fb00fb7356cbe-chat > .f75fb00fb7356cbe-subtitleContainer,
+.f75fb00fb7356cbe-chatContent,
+.c8ffbb79449f399c-container,
+.f75fb00fb7356cbe-content > .c8ffbb79449f399c-membersWrap,
+._133bf5eea8e33a34-container > ._9293f6b2fc12398a-container,
+.f391e3680aff100a-container > ._9293f6b2fc12398a-container,
+._0920e02cc8fc7b7b-homeWrapper > ._9293f6b2fc12398a-container,
+._01ae244280823725-container > ._9293f6b2fc12398a-container,
+.fb64c9a451c49797-container > ._9293f6b2fc12398a-container,
+._133bf5eea8e33a34-peopleColumn,
+._133bf5eea8e33a34-nowPlayingColumn,
+.ca1a02dcad190ff8-mainPageScroller,
+._1a9cebfbd0c9d0f6-headerBar,
+._23746ba3de9452d8-scroller,
+.f391e3680aff100a-container > .f75fb00fb7356cbe-content,
+._6db1d32c47b6ad72-shop,
+.f75fb00fb7356cbe-content > aside > .c0bea05627c5dc35-outer,
+.a98f3b020416ad54-searchResultsWrap,
+.f369dba7416c67f0-container,
+.fb64c9a451c49797-chat,
+.a592e1970a0ce22c-container,
+.cb9592ad77576717-callContainer,
+.cb9592ad77576717-wrapper.cb9592ad77576717-sidebarOpen .cb9592ad77576717-callContainer,
+._722ffae0e1be2672-callContainer,
+.f75fb00fb7356cbe-chat > .c791b281f2fedc32-header,
+.f75fb00fb7356cbe-chat > .d125d22cdfd32cfe-scrollerBase,
+.f75fb00fb7356cbe-chat > ._0b56311ebc6682e2-header,
+.f75fb00fb7356cbe-chat > ._0b56311ebc6682e2-container {
+    background-color: var(--background-base-lower);
+    border-radius: var(--radius-lg);
+    border: var(--border-thickness) solid var(--border-subtle);
+    backdrop-filter: var(--panel-backdrop-filter);
+    box-sizing: border-box;
+    transition: border-color var(--border-hover-transition), box-shadow 0.3s ease;
+    
+    /* Divine Touch: Hafif iç gölge */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2); 
+
+    &:hover {
+        border-color: var(--border-hover);
+        box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.1);
+    }
 }
 
-/* --- Cam Paneller (Glassmorphism) --- */
-/* Sohbet, Kenar Çubuğu, Üye Listesi Arka Planlarını Temizle ve Cam Yap */
-.f75fb00fb7356cbe-chat, 
-._5e434347c823b592-sidebar, 
-.c8ffbb79449f399c-container, 
-._133bf5eea8e33a34-container,
-._0920e02cc8fc7b7b-homeWrapper,
-.f07d62e29a48ceee-applicationStore {
-    background: transparent !important;
+._5e434347c823b592-panels {
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
-/* Ana Panelleri Ayır ve Yüzdür */
 ._5e434347c823b592-sidebar {
-    width: var(--sidebar-width) !important;
-    border-right: 1px solid var(--glass-border);
-    margin: var(--gap);
-    border-radius: var(--radius-lg);
-    background: var(--glass-bg) !important;
-    backdrop-filter: blur(10px);
+    margin: 0 var(--gap) var(--gap) var(--gap);
 }
 
-.f75fb00fb7356cbe-chatContent {
-    margin: var(--gap) var(--gap) var(--gap) 0;
-    border-radius: var(--radius-lg);
-    background: var(--glass-bg) !important;
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
-}
-
-.c8ffbb79449f399c-container {
-    width: var(--members-width) !important;
-    margin: var(--gap) var(--gap) var(--gap) 0;
-    border-radius: var(--radius-lg);
-    background: rgba(0,0,0,0.2) !important; /* Üye listesi biraz daha koyu */
-    border: 1px solid var(--glass-border);
-}
-
-/* --- Sunucu Listesi (Sol En Kenar) --- */
 ._5e434347c823b592-guilds {
-    margin: var(--gap) 0 var(--gap) var(--gap);
-    border-radius: var(--radius-lg);
-    background: var(--glass-bg) !important;
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(5px);
+    margin-bottom: calc(var(--custom-app-panels-height, 0) + var(--gap));
+    margin-right: var(--gap);
+}
+._5e434347c823b592-guilds + div:not(._5e434347c823b592-sidebarList) {
+    width: 100% !important;
+}
+.ef3116c2da186559-scroller {
+    padding-top: var(--custom-guild-list-padding) !important;
+    padding-bottom: var(--custom-guild-list-padding);
+}
+._48112cbe77dc5022-folderGroup {
+    width: 100%;
+}
+._650eb104245d257b-listItem {
+    width: 100%;
 }
 
-/* Home butonu ikonunu değiştir (Daha modern) */
-._6e9f8dce4cc18de3-childWrapper { 
-    background-color: transparent !important; 
+._5e434347c823b592-sidebarList {
+    margin-bottom: calc(var(--custom-app-panels-height, 0) + var(--gap));
+}
+._2637a2609f343032-container {
+    padding-bottom: 0;
+}
+.clickable_f37cb1,
+    ._2637a2609f343032-container,
+    .f37cb1984c371ee5-header {
+    background: none;
+}
+._629e4c86564a4ee7-scroller {
+    margin-bottom: 0;
 }
 
-/* --- Kompakt Kanal Listesi --- */
-._2ea32c412048f708-link {
-    padding: 2px 8px !important; /* Daha az padding */
-    margin: 1px 0 !important;
-    border-radius: var(--radius-sm);
-    transition: all 0.2s ease;
+/* Banner İyileştirmeleri */
+.f37cb1984c371ee5-bannerImage,
+.f37cb1984c371ee5-bannerImg {
+    width: 100%;
+    opacity: 0.8; /* Biraz daha gömülü dursun */
+}
+.f37cb1984c371ee5-bannerVisible .f37cb1984c371ee5-headerEllipseBackdrop {
+    display: none;
+}
+.f37cb1984c371ee5-headerGlass {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-/* Kanal Hover Efekti */
-._2ea32c412048f708-wrapper:hover ._2ea32c412048f708-link {
-    background: rgba(255,255,255,0.05);
-}
-
-/* Seçili Kanal */
-._2ea32c412048f708-modeSelected ._2ea32c412048f708-link {
-    background: linear-gradient(90deg, rgba(88,101,242,0.2), transparent);
-    border-left: 2px solid var(--accent-color);
-}
-._2ea32c412048f708-modeSelected ._2ea32c412048f708-name {
-    color: #fff !important;
-    text-shadow: 0 0 10px var(--accent-glow);
-}
-
-/* Kanal Kategori Başlıkları */
-._629e4c86564a4ee7-containerDefault {
-    padding-top: 10px;
-    font-weight: 700;
-    color: var(--accent-color);
-}
-
-/* --- İlahi Sohbet (Chat Area) --- */
-/* Mesajlar */
-._5126c0cd07f243a0-groupStart {
-    margin-top: 8px !important; /* Mesajlar arası boşluğu azalt */
-}
-
-/* Yüzen Sohbet Barı (Floating Chat Input) */
-.f75fb00fb7356cbe-form {
-    padding: 0 20px 20px 20px !important;
-    margin-top: 0 !important;
-}
-
-.f75fb00fb7356cbe-channelTextArea {
-    background: rgba(0,0,0,0.4) !important;
-    border: 1px solid var(--glass-border);
-    border-radius: 24px !important; /* Tam yuvarlak kapsül */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: border 0.2s, box-shadow 0.2s;
-}
-
-.f75fb00fb7356cbe-channelTextArea:focus-within {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 15px var(--accent-glow);
-}
-
-/* Sohbet Başlığı (Header) */
-.f75fb00fb7356cbe-subtitleContainer {
-    background: transparent !important;
-    border-bottom: 1px solid var(--glass-border);
-    height: 48px !important;
-}
-.f75fb00fb7356cbe-title {
-    background: transparent !important;
-}
-
-/* Gereksiz butonları gizle (Yardım, Konu başlıkları vb.) */
-.c38106a3f0c3ca76-toolbar a[href*="support"], 
-.c38106a3f0c3ca76-toolbar ._9293f6b2fc12398a-icon[d*="M12 2C6.48 2 2 6.48"] {
+._5e434347c823b592-sidebar:after {
     display: none;
 }
 
-/* --- Kullanıcı Paneli (Sol Alt) --- */
-._5e434347c823b592-panels {
-    background: rgba(0,0,0,0.3) !important;
-    border-top: 1px solid var(--glass-border);
-    margin: 0 8px 8px 8px;
-    border-radius: var(--radius-lg);
-    width: auto !important;
+.ef3116c2da186559-wrapper {
+    mask: none;
 }
 
-/* Kullanıcı Profili Konteyneri */
-._37e49614b9f110a9-container {
-    height: 45px !important;
-    padding: 0 4px !important;
+.f75fb00fb7356cbe-chat {
+    border: none !important;
+    background: none;
+}
+.f75fb00fb7356cbe-chatContent {
+    overflow: hidden;
+}
+._133bf5eea8e33a34-container,
+    ._5e434347c823b592-page {
+    padding-bottom: var(--gap);
+    padding-right: var(--gap);
+    border: none !important;
+    background: none;
+}
+._5e434347c823b592-page > .f75fb00fb7356cbe-chat,
+._5e434347c823b592-page > ._133bf5eea8e33a34-container {
+    padding: 0;
 }
 
-/* --- Kompakt Üye Listesi --- */
+._9293f6b2fc12398a-container {
+    margin-bottom: var(--gap);
+}
+
+.f75fb00fb7356cbe-subtitleContainer {
+    margin-bottom: var(--gap);
+}
+.f75fb00fb7356cbe-title {
+    border: none;
+    background: none !important;
+    margin-bottom: 0;
+}
+
+._5e434347c823b592-page > div > .f75fb00fb7356cbe-chat > .f75fb00fb7356cbe-content {
+    border-left: none;
+}
+._133bf5eea8e33a34-tabBody {
+    border: none !important;
+}
+
+.e0cf275d59896c00-listeningAlong {
+    border-top: none !important;
+}
+
+/* Üye Listesi Sıkılaştırma */
+.c8ffbb79449f399c-container {
+    margin-left: var(--gap);
+    overflow: hidden;
+    height: auto;
+    min-width: fit-content;
+}
 .c8ffbb79449f399c-member {
-    padding: 4px 8px !important;
-    max-width: 100%;
+    /* Compact Member List */
+    padding: 4px 8px; /* Daha az padding */
+    margin: 1px 0;
 }
 .c8ffbb79449f399c-layout {
     border-radius: var(--radius-sm);
 }
-.c8ffbb79449f399c-member:hover .c8ffbb79449f399c-layout {
-    background: rgba(255,255,255,0.05);
+
+.f75fb00fb7356cbe-content > .c8ffbb79449f399c-membersWrap {
+    margin-left: var(--gap);
+    overflow: hidden;
+    height: auto;
+    min-width: fit-content;
+}
+.c8ffbb79449f399c-members,
+    .c8ffbb79449f399c-member {
+    background: none;
 }
 
-/* --- Pencere Kontrolleri (Mac Style - Modern) --- */
-.c38106a3f0c3ca76-winButton {
-    top: 10px;
-    background: transparent !important;
-}
-.c38106a3f0c3ca76-winButton > svg { display: none; }
-.c38106a3f0c3ca76-winButton::after {
-    content: "";
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    display: block;
-    margin: auto;
-}
-.c38106a3f0c3ca76-winButtonClose::after { background: #ff5f57; }
-.c38106a3f0c3ca76-winButtonMinMax:nth-child(2)::after { background: #febc2e; }
-.c38106a3f0c3ca76-winButtonMinMax:nth-child(1)::after { background: #28c840; }
-
-/* --- Ekstra Güzelleştirmeler --- */
-/* Scrollbar'ı Modernleştir */
-::-webkit-scrollbar {
-    width: 6px !important;
-    height: 6px !important;
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.1) !important;
-    border-radius: 10px !important;
-}
-::-webkit-scrollbar-track {
-    background: transparent !important;
+._01ae244280823725-resizeHandle {
+    background: transparent;
 }
 
-/* Yeni mesaj ayracı */
+.e6b7699ce8339e1c-privateChannels,
+    ._99e7cad8d4c55236-scroller {
+    background: none;
+}
+._99e7cad8d4c55236-scroller {
+    margin-bottom: 0;
+}
+
+._133bf5eea8e33a34-tabBody {
+    background: none;
+}
+
+._133bf5eea8e33a34-nowPlayingColumn {
+    margin-left: var(--gap);
+}
+._7d20cf18f8a2784c-container {
+    background: none;
+}
+._7d20cf18f8a2784c-scroller {
+    border: none;
+}
+
+._0920e02cc8fc7b7b-homeWrapper {
+    border: none;
+    background: none;
+}
+.f07d62e29a48ceee-applicationStore {
+    background: none;
+}
+
+._6db1d32c47b6ad72-shop {
+    overflow: hidden;
+    height: auto;
+}
+._084152b107f71237-shop {
+    margin-top: calc(var(--custom-channel-header-height) * -1 - 16px);
+}
+
+._955a392354a35c6e-container {
+    border: none;
+}
+
+.f75fb00fb7356cbe-content > aside > .c0bea05627c5dc35-outer {
+    margin-left: var(--gap);
+    overflow: hidden;
+    background-position: center calc(-1 * var(--border-thickness));
+    background-size: 100% calc(100% + 2 * var(--border-thickness));
+}
+
+.a98f3b020416ad54-searchResultsWrap {
+    margin-left: var(--gap);
+}
+
+._6e2b9359c6f84cfd-notice {
+    margin: 0 var(--gap) var(--gap) 0;
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+    height: 40px;
+}
+
+._01ae244280823725-container {
+    border: none;
+    background: none;
+}
+.a44415a3320e67de-chat::before {
+    display: none;
+}
+.cb9592ad77576717-channelChatWrapper {
+    background: none;
+}
+
+._5e434347c823b592-page > div > ._01ae244280823725-chatLayerWrapper {
+    margin: 0 var(--gap) var(--gap) 0;
+    height: calc(100% - var(--gap));
+}
+._01ae244280823725-container {
+    padding-left: calc((var(--gap) - var(--chat-resize-handle-width)));
+}
+
+.fb64c9a451c49797-container {
+    background: none;
+}
+.fb64c9a451c49797-chat::before {
+    display: none;
+}
+
+.a592e1970a0ce22c-container {
+    overflow: hidden;
+}
+._8a7fc664acf53af6-backdrop {
+    background-color: var(--background-base-lower);
+}
+
+.cb9592ad77576717-wrapper {
+    background: none;
+    margin-bottom: var(--gap);
+}
+.cb9592ad77576717-wrapper.cb9592ad77576717-fullScreen {
+    margin-top: var(--gap);
+    margin-left: var(--gap);
+    width: calc(100% - var(--gap));
+    height: calc(100% - var(--gap));
+}
+
+._23e6b439306f125a-standardSidebarView,
+._23e6b439306f125a-contentRegion,
+._23e6b439306f125a-sidebarRegionScroller,
+._23e6b439306f125a-contentRegionScroller {
+    background: none;
+}
+._23e6b439306f125a-standardSidebarView {
+    backdrop-filter: var(--panel-backdrop-filter);
+}
+
+.cdf8a9a2bbd98bd3-wrapper,
+.cdf8a9a2bbd98bd3-wrapper > .fc817765600a960a-wrapper {
+    background: none;
+}
+._5e434347c823b592-page > ._8946359d8adb1488-container,
+._5e434347c823b592-page > .f75fb00fb7356cbe-chat {
+    background: none !important;
+}
+
+._0f481cbbd7530492-newMessagesBar {
+    top: 8px; /* Compact */
+    left: 8px;
+    right: 8px;
+    border-radius: var(--radius-sm);
+    padding: 0 8px;
+    background: var(--accent-3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+._7aaec78b97ff00f7-bottom,
+    ._629e4c86564a4ee7-unreadBottom {
+    bottom: 0;
+}
+
+.ef3116c2da186559-unreadMentionsIndicatorBottom,
+    .ef3116c2da186559-unreadMentionsIndicatorTop {
+    width: calc(var(--guildbar-avatar-size) + var(--custom-guild-list-padding) * 2);
+    padding: calc(var(--custom-guild-list-padding) / 2);
+}
+
+#vc-spotify-player {
+    background: none;
+}
+
+/* general chat bar improvements */
+.f75fb00fb7356cbe-channelTextArea {
+    border-radius: var(--radius-lg);
+    background: var(--bg-3) !important;
+}
+._740174f3d6a2c8fe-themedBackground {
+    background: none;
+}
+.ec4baf0360ff3578-slateTextArea {
+    margin-left: 4px;
+}
+
+/* improve unread divider */
 ._908e20001ad67812-divider {
-    border-color: var(--accent-color);
+    border-width: 1px;
+    border-radius: 99px;
+    opacity: 0.8;
 }
-._908e20001ad67812-content {
-    background: var(--accent-color) !important;
-    color: white !important;
-    border-radius: 4px;
-    padding: 2px 8px;
-    font-size: 10px;
+._908e20001ad67812-endCap {
+    display: none; /* Uçları gizle, sadece çizgi ve yazı */
+}
+._908e20001ad67812-divider ._908e20001ad67812-content {
+    margin-top: -10px;
+    background: var(--bg-2);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
 }
 
-/* Embed ve Kod Blokları */
-._623de82e76ad7f82-embedFull, .hljs {
-    background: rgba(0,0,0,0.3) !important;
-    border: 1px solid var(--glass-border);
-    border-left: 4px solid var(--accent-color);
+/* improve highlight message left edge */
+._5126c0cd07f243a0-message._5126c0cd07f243a0-mentioned::before,
+._5126c0cd07f243a0-replying::before,
+._5126c0cd07f243a0-ephemeral::before {
+    width: 3px;
+    border-radius: 4px;
+    height: calc(100% - 10px);
+    top: 5px;
+    left: 4px;
+}
+
+._5126c0cd07f243a0-message {
+    border-radius: var(--radius-sm);
+    margin-left: 4px;
+    transition: background 0.1s;
+}
+._5126c0cd07f243a0-message:hover {
+    background: var(--message-hover) !important;
+}
+
+/* improve server selected marker */
+.e5445cbd3ad226f2-pill._581051df43c5ebb6-wrapper {
+    width: calc((var(--custom-guild-list-padding) - 4px) / 2 + 4px);
+}
+._581051df43c5ebb6-item {
+    width: 4px;
+    border-radius: 4px;
+    margin-left: calc((var(--custom-guild-list-padding) - 4px) / 2);
+    box-shadow: 0 0 8px var(--accent-1); /* Glow effect */
+}
+
+/* improve embeds */
+._623de82e76ad7f82-embedFull {
+    border: 1px solid var(--border-light);
+    border-left-width: 4px;
+    background: rgba(0,0,0,0.2) !important;
+}
+
+/* improve borders */
+._23977d5b7cef7361-reaction,
+    ._23977d5b7cef7361-reactionBtn._23977d5b7cef7361-forceShow {
+    border-width: 1px;
+    background: rgba(0,0,0,0.3);
+}
+
+/* roundness */
+._623de82e76ad7f82-embedFull,
+    .hljs,
+    .af017ab847f75d02-imageWrapper,
+    ._9271d23503a01b50-container {
+    border-radius: var(--radius-md);
+}
+
+.c0bea05627c5dc35-outer, 
+    ._084343c4f11eaaab-contentWrapper {
+    border-radius: var(--radius-lg);
+}
+.c0bea05627c5dc35-inner {
+    border-radius: calc(var(--radius-lg) - 4px);
+}
+
+.c0bea05627c5dc35-outer {
+    border: 1px solid var(--border-subtle);
+    background-position: center calc(-1 * var(--border-thickness));
+    background-size: 100% calc(100% + 2 * var(--border-thickness));
+}
+._24502a4069848acb-root {
+    background: none;
+}
+
+._37e49614b9f110a9-container {
+    margin-inline-start: 0;
+}
+._37e49614b9f110a9-container ._4bbc6dc06e75ad52-container {
+    border-radius: var(--radius-lg);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* remove unnecessary backgrounds */
+._160d8e55254637e5-app,
+#app-mount,
+body {
+    background: transparent !important;
+}
+
+body {
+    --font-primary: var(--font), 'gg sans';
+    --font-display: var(--font), 'gg sans';
+    --font-code: var(--code-font), 'gg mono';
+}
+
+[class*='scroll'] {
+    will-change: scroll-position;
+}
+._23977d5b7cef7361-burstGlow {
+    display: none;
+}
+
+/* animations.css - DIVINE SMOOTHNESS */
+body {
+    --list-item-transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --dms-icon-svg-transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@property --animations {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on;
+}
+
+@container body style(--animations: on) {
+    /* list hover animations */
+    ._2ea32c412048f708-wrapper ._2ea32c412048f708-link,
+        ._91a9d7f7e5248a56-container,
+        ._972a0d22c8afa7f0-channel,
+        .aa8da23faa27393c-side .aa8da23faa27393c-item {
+        transition: margin-left var(--list-item-transition), background-color 0.1s;
+        will-change: margin-left;
+    }
+    ._2ea32c412048f708-wrapper:hover ._2ea32c412048f708-link,
+    .aa8da23faa27393c-side .aa8da23faa27393c-item:hover {
+        margin-left: 6px; /* Compact hareket */
+    }
+    ._91a9d7f7e5248a56-container:hover,
+    ._972a0d22c8afa7f0-channel:hover {
+        margin-left: 10px;
+    }
+    /* list hover channel dot */
+    ._2ea32c412048f708-unread {
+        border-radius: 50%;
+        width: 6px;
+        height: 6px;
+        margin-left: -3px;
+        transition: var(--list-item-transition);
+        box-shadow: 0 0 5px var(--text-0);
+    }
+    ._2ea32c412048f708-wrapper:hover ._2ea32c412048f708-unread {
+        margin-left: 2px;
+    }
+}
+
+/* background-image.css */
+body {
+    --background-image-url: url(''); /* Buraya resim koyabilirsin */
+}
+
+@property --background-image {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: off;
+}
+
+@container body style(--background-image: on) {
+    #app-mount ._960e4207cea8323e-bg {
+        background: var(--background-image-url);
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+/* chatbar.css - COMPACT FLOATING */
+body {
+    --chatbar-height: 40px; /* Daha ince */
+    --custom-channel-textarea-text-area-height: var(--chatbar-height);
+}
+
+@property --custom-chatbar {
+    syntax: 'off | separated';
+    inherits: false;
+    initial-value: separated; /* Zorla Floating Yap */
+}
+
+._0923f156a0410684-attachWrapper {
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+._4d3a93bb8f6e0dd9-icon {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+._740174f3d6a2c8fe-attachButton {
+    display: flex;
+    align-items: center;
+}
+
+@container body style(--custom-chatbar: separated) {
+    .f75fb00fb7356cbe-chatContent {
+        background: none;
+        border-radius: 0;
+        border: none;
+        backdrop-filter: none;
+    }
+    ._36d072eab2b2e737-messagesWrapper {
+        background-color: var(--background-base-lower);
+        border-radius: var(--radius-lg);
+        border: var(--border-thickness) solid var(--border-subtle);
+        backdrop-filter: var(--panel-backdrop-filter);
+        transition: border-color var(--border-hover-transition);
+        overflow: hidden;
+
+        &:hover {
+            border-color: var(--border-hover);
+        }
+    }
+    ._36d072eab2b2e737-scrollerSpacer {
+        height: calc(20px + var(--space-xs));
+    }
+    ._36d072eab2b2e737-scroller::-webkit-scrollbar-track {
+        margin-bottom: calc(20px);
+    }
+    .f75fb00fb7356cbe-chatContent:has(.b8880176888cc928-typing) ._36d072eab2b2e737-messagesWrapper::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--background-base-lower);
+        height: 20px;
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        z-index: 2;
+    }
+    .f75fb00fb7356cbe-form {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+        margin-top: 0;
+    }
+    .b8880176888cc928-typing {
+        position: absolute;
+        order: -1;
+        top: calc(-20px + var(--border-thickness) * -1);
+        left: calc(var(--border-thickness));
+        border-radius: 0 0 0 var(--radius-lg);
+        padding: 0 0 0 var(--space-sm);
+        height: 20px;
+    }
+    .f75fb00fb7356cbe-channelBottomBarArea {
+        margin-top: var(--gap);
+    }
+    .f75fb00fb7356cbe-channelTextArea {
+        margin: 0;
+        background-color: var(--background-base-lower);
+        border-radius: 999px; /* Tam yuvarlak kapsül */
+        border: var(--border-thickness) solid var(--border-subtle);
+        backdrop-filter: var(--panel-backdrop-filter);
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.15);
+        }
+        &:focus-within {
+             border-color: var(--accent-1);
+             box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.25);
+        }
+    }
+    ._740174f3d6a2c8fe-stackedBars {
+        background: none !important;
+    }
+    ._44df51b030bd5ece-wrapper {
+        margin: var(--gap) 0 0 0;
+        height: var(--chatbar-height);
+        padding: 0;
+        border-radius: var(--radius-lg);
+        border: var(--border-thickness) solid var(--border-subtle);
+        backdrop-filter: var(--panel-backdrop-filter);
+    }
+}
+
+/* colors.css - DIVINE PALETTE (Deep Void + Neon) */
+@property --colors {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on;
+}
+
+:root {
+    /* Main RGB values for easy theming */
+    --accent-rgb: 88, 101, 242; /* Discord Blurple */
+
+    /* text colors - High Contrast */
+    --text-0: #ffffff; 
+    --text-1: #e0e0e0; 
+    --text-2: #c0c0c0; 
+    --text-3: #a0a0a0; 
+    --text-4: #808080; 
+    --text-5: #606060; 
+
+    /* background colors - Deep Void */
+    --bg-1: rgba(0, 0, 0, 0.4); 
+    --bg-2: rgba(15, 15, 20, 0.5); 
+    --bg-3: rgba(10, 12, 18, 0.6); /* Main glass panels */
+    --bg-4: rgba(5, 5, 8, 0.8); /* Base */
+    
+    --hover: rgba(255, 255, 255, 0.05);
+    --active: rgba(255, 255, 255, 0.1);
+    --message-hover: rgba(0, 0, 0, 0.2);
+
+    /* accent colors - Neon Style */
+    --accent-1: #5865f2; 
+    --accent-2: #4752c4; 
+    --accent-3: #3c45a5;
+    --accent-4: #323a8a;
+    --accent-5: #282e6e;
+    
+    --accent-new: #f23f42; /* Red */
+    
+    --mention: rgba(88, 101, 242, 0.15); 
+    --mention-hover: rgba(88, 101, 242, 0.25);
+    --reply: rgba(255, 255, 255, 0.03);
+    --reply-hover: rgba(255, 255, 255, 0.05);
+
+    /* status indicator colors - Vibrant */
+    --online: #23a559; 
+    --dnd: #f23f42; 
+    --idle: #f0b232; 
+    --streaming: #593695; 
+    --offline: #80848e; 
+
+    /* border colors - Subtle Glass */
+    --border-light: rgba(255, 255, 255, 0.08); 
+    --border: rgba(255, 255, 255, 0.05); 
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --button-border: rgba(255, 255, 255, 0.1);
+
+    /* base colors - Used for gradients/mixes */
+    --red-1: #f23f42;
+    --green-1: #23a559;
+    --blue-1: #5865f2;
+    --yellow-1: #f0b232;
+    --purple-1: #593695;
+    
+    --red-2: #d83639;
+    --green-2: #1e8e4c;
+    --blue-2: #4752c4;
+    --yellow-2: #d99f2b;
+    --purple-2: #4b2d7f;
+}
+
+@container root style(--colors: on) {
+    body,
+    .theme-dark:not(.custom-user-profile-theme),
+    .theme-light:not(.custom-user-profile-theme) {
+        --app-frame-background: var(--bg-4);
+        --app-frame-border: var(--border);
+        --background-accent: var(--bg-2);
+        --background-base-low: var(--bg-4);
+        --background-base-lower: var(--bg-4);
+        --background-base-lowest: var(--bg-4);
+        --background-brand: var(--accent-1);
+        --background-code: var(--bg-2);
+        --background-feedback-critical: var(--red-2);
+        --background-feedback-info: var(--blue-2);
+        --background-feedback-positive: var(--green-2);
+        --background-feedback-warning: var(--yellow-2);
+        --background-mod-muted: var(--hover);
+        --background-mod-normal: var(--bg-2);
+        --background-mod-strong: var(--bg-1);
+        --background-mod-subtle: var(--hover);
+        --background-scrim: rgba(0,0,0,0.6);
+        --background-secondary-alt: var(--bg-2);
+        --background-surface-high: var(--bg-2);
+        --badge-background-default: var(--accent-1);
+        --border-muted: var(--border-light);
+        --border-normal: var(--border);
+        --border-subtle: var(--border);
+        --button-outline-primary-text: var(--text-1);
+        --card-background-default: var(--bg-2);
+        --channel-icon: var(--text-4);
+        --channel-text-area-placeholder: var(--text-5);
+        --channels-default: var(--text-4);
+        --channeltextarea-background: var(--bg-2);
+        --chat-background-default: var(--bg-3);
+        --chat-text-muted: var(--text-4);
+        --checkbox-background-default: var(--bg-2);
+        --control-brand-foreground: var(--accent-1);
+        --header-primary: var(--text-1);
+        --header-secondary: var(--text-3);
+        --input-background-default: var(--bg-2);
+        --interactive-active: var(--text-1);
+        --interactive-hover: var(--text-2);
+        --interactive-muted: var(--text-5);
+        --interactive-normal: var(--text-3);
+        --modal-background: var(--bg-3);
+        --modal-footer-background: var(--bg-2);
+        --scrollbar-auto-scrollbar-color-thumb: var(--bg-1);
+        --scrollbar-auto-scrollbar-color-track: transparent;
+        --scrollbar-auto-thumb: var(--bg-1);
+        --scrollbar-auto-track: transparent;
+        --scrollbar-thin-thumb: var(--bg-1);
+        --scrollbar-thin-track: transparent;
+        --text-link: var(--accent-1);
+        --text-muted: var(--text-4);
+        --text-normal: var(--text-2);
+        
+        --brand-360: var(--accent-1);
+        --brand-500: var(--accent-1);
+        --blurple-50: var(--accent-1);
+    }
+
+    /* Glow Effects on Inputs */
+    .input_f8bc55:focus {
+        box-shadow: 0 0 10px var(--accent-2);
+        border-color: var(--accent-1);
+    }
+
+    ._960e4207cea8323e-bg {
+        background: radial-gradient(circle at top right, #1a1e29 0%, transparent 40%),
+                    radial-gradient(circle at bottom left, #0f1219 0%, transparent 40%);
+        background-color: #050608; /* Deepest black */
+    }
+
+    ._2ea32c412048f708-modeUnreadImportant ._2ea32c412048f708-icon,
+        ._2ea32c412048f708-wrapper:hover ._2ea32c412048f708-icon {
+        color: var(--text-1);
+        filter: drop-shadow(0 0 3px var(--text-1));
+    }
+    
+    ._2ea32c412048f708-modeSelected ._2ea32c412048f708-icon {
+        color: var(--accent-1);
+        filter: drop-shadow(0 0 5px var(--accent-1));
+    }
+    ._2ea32c412048f708-modeSelected ._2ea32c412048f708-name {
+        color: var(--text-0);
+        text-shadow: 0 0 5px var(--accent-2);
+    }
+
+    /* Klasör renkleri */
+    .expandedFolderIconWrapper__48112 > svg[style*="color"] {
+        filter: drop-shadow(0 0 5px currentColor);
+    }
+
+    /* Switch (Toggle) Güzelleştirme */
+    .vc-switch-container {
+        background-color: var(--bg-1) !important;
+    }
+    .vc-switch-container.vc-switch-checked {
+        background-color: var(--accent-1) !important;
+        box-shadow: 0 0 10px var(--accent-2);
+    }
+
+    /* Scrollbar Modern */
+    ::-webkit-scrollbar {
+        width: 8px !important;
+        height: 8px !important;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 99px !important;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: transparent !important;
+    }
+    
+    /* Selection */
+    ::selection {
+        background: var(--accent-2);
+        color: white;
+    }
+}
+
+/* dms-button.css */
+body {
+    --dms-icon-svg-url: url('https://refact0r.github.io/midnight-discord/assets/Font_Awesome_5_solid_moon.svg');
+    --dms-icon-svg-size: 80%;
+    --dms-icon-color-before: var(--text-4);
+    --dms-icon-color-after: var(--text-0);
+    --dms-background-color: linear-gradient(135deg, var(--accent-3), var(--accent-1));
+}
+
+@property --custom-dms-icon {
+    syntax: 'off | hide | custom';
+    inherits: false;
+    initial-value: custom;
+}
+
+@container body style(--custom-dms-icon: custom) {
+    ._6e9f8dce4cc18de3-wrapper[data-list-item-id='guildsnav___home'] > ._6e9f8dce4cc18de3-childWrapper > svg {
+        display: none;
+    }
+    ._6e9f8dce4cc18de3-wrapper[data-list-item-id='guildsnav___home'] > ._6e9f8dce4cc18de3-childWrapper::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 60%;
+        height: 60%;
+        background: var(--dms-icon-color-before);
+        mask-image: var(--dms-icon-svg-url);
+        mask-size: var(--dms-icon-svg-size);
+        mask-position: center;
+        mask-repeat: no-repeat;
+        transition: all 0.2s ease;
+    }
+    ._6e9f8dce4cc18de3-wrapper[data-list-item-id='guildsnav___home']:hover > ._6e9f8dce4cc18de3-childWrapper::before {
+        transform: rotate(0deg) scale(1.1);
+        background: var(--text-0);
+        box-shadow: 0 0 15px var(--accent-1);
+    }
+    ._6e9f8dce4cc18de3-wrapper[data-list-item-id='guildsnav___home']._6e9f8dce4cc18de3-selected > ._6e9f8dce4cc18de3-childWrapper::before {
+        background: var(--dms-icon-color-after);
+        transform: rotate(-360deg) scale(0.9);
+    }
+}
+
+/* top-bar.css - COMPACT */
+body {
+    --top-bar-height: 28px; /* Daha ince */
+    --custom-app-top-bar-height: var(--top-bar-height);
+}
+
+@property --top-bar-button-position {
+    syntax: 'off | hide | serverlist | titlebar';
+    inherits: false;
+    initial-value: titlebar;
+}
+
+@container body style(--top-bar-button-position: titlebar) {
+    #app-mount {
+        --custom-channel-header-height: 48px; /* Sabit yükseklik */
+        --top-bar-right-margin: 80px;
+    }
+
+    .c38106a3f0c3ca76-title { display: none; }
+    
+    .c38106a3f0c3ca76-trailing {
+        position: absolute;
+        top: 6px;
+        right: 12px;
+        gap: 8px;
+        z-index: 1000;
+        height: 24px;
+    }
+    
+    /* Gereksiz Help butonunu yok et */
+    .c38106a3f0c3ca76-trailing > a[href*="support"] { display: none; }
+
+    .c38106a3f0c3ca76-winButtons { padding: 0; }
+}
+
+/* transparency-blur.css */
+@property --panel-blur {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on; /* Zorla Açık */
+}
+
+@container body style(--panel-blur: on) {
+    #app-mount {
+        /* Divine Blur Level */
+        --panel-backdrop-filter: blur(20px) saturate(140%);
+    }
+
+    .popoverReactionHoverBar_f84418,
+    .c36707910f687430-tooltip,
+    .c1e9c47c23f12ca3-menu,
+    ._084343c4f11eaaab-contentWrapper,
+    ._49fc18ba07c5025f-root,
+    .c0bea05627c5dc35-outer.user-profile-popout:not(.custom-theme-background),
+    ._6b0e07cbaf13ec4e-autocomplete,
+    ._55c999adcf6db265-container,
+    .e8b59c4b335dd2fc-messagesPopoutWrap,
+    ._76f047ded9fef6d4-popout,
+    ._7aaec78b97ff00f7-bar {
+        background: rgba(10, 12, 18, 0.85);
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--border-light);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+}
+
+/* user-panel.css */
+@property --small-user-panel {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: off;
+}
+
+/* User Panel'i Yüzdür */
+._5e434347c823b592-panels {
+    margin: 0 var(--gap) var(--gap) var(--gap);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-3);
+    backdrop-filter: blur(20px);
+    width: auto !important;
+}
+
+/* window-controls.css - MODERN DOTS */
+body {
+    --window-control-size: 12px;
+}
+
+@property --custom-window-controls {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on;
+}
+
+@container body style(--custom-window-controls: on) {
+    .c38106a3f0c3ca76-winButtons {
+        gap: 6px;
+        padding-right: 12px;
+        top: 12px;
+        position: relative;
+    }
+    .c38106a3f0c3ca76-winButton > svg {
+        display: none;
+    }
+    .c38106a3f0c3ca76-winButton {
+        background: none !important;
+        width: var(--window-control-size);
+        height: var(--window-control-size);
+        border-radius: 50%;
+        transition: transform 0.2s;
+    }
+    .c38106a3f0c3ca76-winButton:hover {
+        transform: scale(1.2);
+    }
+    /* Mac Style Colors */
+    .c38106a3f0c3ca76-winButtonClose {
+        background-color: #ff5f57 !important;
+        box-shadow: 0 0 6px #ff5f57;
+    }
+    .c38106a3f0c3ca76-winButtonMinMax:nth-child(1) {
+        background-color: #28c840 !important; /* Maximize - Green */
+        box-shadow: 0 0 6px #28c840;
+    }
+    .c38106a3f0c3ca76-winButtonMinMax:nth-child(2) {
+        background-color: #febc2e !important; /* Minimize - Yellow */
+        box-shadow: 0 0 6px #febc2e;
+    }
 }
